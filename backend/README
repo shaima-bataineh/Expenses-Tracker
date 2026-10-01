@@ -1,0 +1,51 @@
+# Expense Tracker Backend
+A RESTful API for managing expenses using Node.js, Express.js, and PostgreSQL.
+
+## Technologies
+
+- Node.js
+- Express.js
+- PostgreSQL
+- pg
+- dotenv
+- CORS
+
+# api method
+
+| Method | Endpoint            | Description       |
+| ------ | ------------------- | ------------------ |
+| GET    | `/api/expenses`     | Get all expenses  |
+| GET    | `/api/expenses/:id` | Get one expense   |
+| POST   | `/api/expenses`     | Add a new expense |
+| PUT    | `/api/expenses/:id` | Update an expense |
+| DELETE | `/api/expenses/:id` | Delete an expense |
+
+
+# Validation
+
+The API validates:
+
+- Title is required and cannot be empty.
+- Amount must be a number greater than 0.
+
+# Category must be one of:
+- Food
+- Transport
+- Bills
+- Entertainment
+- Other
+Date must be valid.
+Invalid or non-existing IDs return 404.
+Invalid request data returns 400.
+# Database and Security
+-PostgreSQL is used to store expenses.
+-Parameterized SQL queries are used with $1, $2, etc.
+-User data is not directly concatenated into SQL queries.
+-The database generates expense IDs.
+-RETURNING is used when creating, updating, or deleting records.
+-CORS is enabled for frontend communication.
+
+# Testing
+All API endpoints were tested using Thunder Client.
+
+-The screenshots folder contains screenshots showing successful and error requests for the    endpoints.

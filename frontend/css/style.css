@@ -1,0 +1,67 @@
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+@media(max-width: 768px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.dark-mode{
+    background-color: #212529;
+    color: #ffffff;
+}
+
+
+.dark-mode .navbar-brand,
+.dark-mode .nav-link,
+.dark-mode .nav-link.active {
+    color: white;
+}
+
+.dark-mode .card {
+    background-color: #343a40;
+    color: white;
+}
+.dark-mode .form-control,
+.dark-mode .form-select {
+    background-color: #343a40;
+    color: white;
+    border-color: #6c757d;
+
+}
+
+.dark-mode .table {
+    background-color: #6c757d;
+    color: white;
+}
+
+.dark-mode .table td, /* remove the background color from table cells */
+.dark-mode .table th {
+    background-color: #343a40;
+    color: white;
+}
+.dark-mode .table .btn-primary{ /* remove the background color from buttons */
+    border-color: transparent;
+}
+
+.dark-mode .modal-content{
+    background-color: #343a40;
+    color: white;
+}
+.dark-mode .darkmode-btn{
+    color: white;
+    border-color:#6c757d;
+}
+.dark-mode .btn-close{
+    filter: invert(1); /* converts the close button to white */
+}
+
+.dark-mode .table tbody tr:hover td {
+    background-color: #495057;
+}
+.expenses-container,
+.navbar-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
