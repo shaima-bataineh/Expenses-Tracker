@@ -1,7 +1,47 @@
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(3,1fr);
+  gap: 15px;
 }
+
+.summary-grid .card {
+    border:none;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+main section {
+    margin-bottom: 25px;
+}
+
+.section-title{
+    font-size:22px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.expense-form {
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.expense-form .form-control,
+.expense-form .form-select {
+    padding: 10px 12px;
+    
+}
+
+.expense-add-btn{
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
 @media(max-width: 768px) {
   .summary-grid {
     grid-template-columns: 1fr;
