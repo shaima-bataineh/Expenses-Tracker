@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container navbar-container">
         <a class="navbar-brand" href="#">Expenses Tracker</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +23,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">Add Expense</a>
+          <a class="nav-link" href="#expenseForm">Add Expense</a>
         </li>
         
     </ul>
@@ -70,7 +70,18 @@
         </section>
         <section>
             <div class="container expenses-container">
-                <form id="expenseForm" novalidate>
+                <div class="card chart-card">
+                    <div class="card-body">
+                        <h3 class="section-title">Expenses by Category</h3>
+                        <canvas id="expenseChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container expenses-container">
+                <h3 class="section-title">Add New Expense</h3>
+                <form id="expenseForm" class="expense-form" novalidate >
                  <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" required>
@@ -94,7 +105,7 @@
                     <label for="date" class="form-label">Date</label>
                     <input type="date" class="form-control" id="date">
                 </div>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary expense-add-btn">
                     Add Expense
                 </button>
                 </form>
@@ -123,10 +134,10 @@
                     </div>
                 </div>
 
-               <div class="table-responsive">
-                <table class="table">
+               <div class="table-responsive table-container">
+                <table class="table expense-table">
                     <thead>
-                        <tr class="table-primary">
+                        <tr class="table-header">
                             <th>Title</th>
                             <th>Amount</th>
                             <th>Category</th>

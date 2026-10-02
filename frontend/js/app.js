@@ -8,7 +8,55 @@ const dateInput = document.getElementById("date");
 const darkModeBtn = document.getElementById("darkModeBtn");
 darkModeBtn.addEventListener("click", function(){
     document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")){
+        darkModeBtn.textContent = "Light Mode";
+        
+    }else{
+        darkModeBtn.textContent = "Dark Mode";
+        
+    }
 });
+
+// chart 
+const expenseChart = document.getElementById("expenseChart");
+let chart;
+function getExpensesByCategory(expenses){
+    const categoryTotals = {};
+    expenses.forEach(function(expense){
+        if(!categoryTotals[expense.category]){
+            categoryTotals[expense.category] = 0;
+        }
+        categoryTotals[expense.category] += Number(expense.amount);
+    });
+    return categoryTotals;
+}
+
+function updateChart(expenses){
+    const categoryTotals = getExpensesByCategory(expenses);
+
+    const labels = Object.keys(categoryTotals);
+    const values = Object.values(categoryTotals);
+
+    if(chart){
+        chart.destroy(); // delete old chart before create new chart
+    
+    }
+
+    chart = new Chart(expenseChart,{
+        type: "bar",
+        data:{
+            labels: labels,
+            datasets:[{
+                label: "Expenses",
+                data: values
+            }]
+        },
+        options:{
+            responsive: true,
+        }
+    });
+}
 
 // alert message
 const alertContainer = document.getElementById("alertContainer");
@@ -77,8 +125,7 @@ expenseForm.addEventListener("submit", async function (event) {
             return;
         }
 
-        const data = await response.json();
-        showAlert("Expense addes successfuly: ","success");
+        showAlert("Expense added successfully: ","success");
         await loadExpenses();
         expenseForm.reset();// reset input (form)
     } catch (error) {
@@ -200,13 +247,12 @@ editExpenseForm.addEventListener("submit",async function(event) {
             return;
         }
 
-        const data = await response.json();
         showAlert("Expense updated successfully","success");
         editExpenseModal.hide();
         await loadExpenses();
 
     }catch(error){
-        showAlert("Could not connect to server");
+        showAlert("Could not connect to server","danger");
     }
 });
 
@@ -226,7 +272,9 @@ expenseTableBody.innerHTML = "";
 
         const categoryCell = document.createElement("td");
         const categoryBadge = document.createElement("span");
-        categoryBadge.classList.add("badge","text-bg-primary");
+        categoryBadge.classList.add("badge","category-badge",
+            expense.category.toLowerCase()
+        );
 
         categoryBadge.textContent = expense.category;
         categoryCell.appendChild(categoryBadge);
@@ -236,10 +284,10 @@ expenseTableBody.innerHTML = "";
         dateCell.textContent = expense.date;
         row.appendChild(dateCell);
 
-        expenseTableBody.appendChild(row);
 
         // Actioncell
         const actionCell = document.createElement("td");
+        actionCell.classList.add("actions-cell");
         // edit button
         const editButton = document.createElement("button");
         editButton.textContent = "Edit";
@@ -277,7 +325,7 @@ expenseTableBody.innerHTML = "";
                     showAlert(errorData.message,"danger");
                     return;
                 }
-                const data = await response.json();
+                //const data = await response.json();
                 showAlert("Expense deleted successfully", "success");
                 await loadExpenses();// get list agin from server 
             }catch(error){
@@ -292,6 +340,7 @@ expenseTableBody.innerHTML = "";
 
         // add action cell to row
         row.appendChild(actionCell);
+        expenseTableBody.appendChild(row);
     });
 }
 
@@ -308,18 +357,17 @@ async function loadExpenses() {
         showAlert(errorData.message, "danger");
         return;
     }
-    const data = await response.json();
 
     allExpenses = data;
     updateSummary(data);
+    
     // know choose not give all data
     const selectedCategory = categoryFilter.value;
     if(selectedCategory === "All"){
         renderExpenses(allExpenses);
     }else{
         const filteredExpenses = allExpenses.filter(function(expense){
-            if(expense.category === selectedCategory)
-                return true;
+            return expense.category === selectedCategory;
         });
         renderExpenses(filteredExpenses);
     }
