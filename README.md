@@ -25,10 +25,14 @@ Users can switch between Dark Mode and Light Mode .
  - Nodemon
 
 ## Project Structure
+```text
 
 Expenses Tracker/
 ├── backend/
-│   └── server.js
+│   ├── server.js
+│   ├── schema.sql
+│   ├── package.json
+│   └── package-lock.json
 ├── frontend/
 │   ├── css/
 │   │   └── style.css
@@ -37,7 +41,7 @@ Expenses Tracker/
 │   └── index.html
 ├── screenshots/
 ├── README.md
-└ ── .gitignore
+└── .gitignore
 
 ## Requirements
 
@@ -46,24 +50,24 @@ Expenses Tracker/
 - npm
 
 ## Installation
-## 1. Clone the repository
- - git clone YOUR_GITHUB_REPOSITORY_URL (git clone https://github.com/shaima-bataineh/Expenses-Tracker.git)
 
+## 1. Clone the repository
+ - git clone https://github.com/shaima-bataineh/Expenses-Tracker.git
 ```md
-### 2. Set up the database
+ 2. Set up the database
   open pgAdmin/PostgreSQL
   Create the database
   Run the `schema.sql` file
 
-### 3. Set up environment variables
+ 3. Set up environment variables
  - create file name .env 
  - Add the following variables:
-```env
+
    DB_HOST= localhost
    DB_PORT= 5432
    DB_USER= postgres
    DB_PASSWORD= your_password
-```text
+
 DB_NAME=your_database_name
 
 ### 4. Install dependencies
@@ -73,16 +77,18 @@ npm install
 
 ### 5. Run the backend
 
-```bash
+
 npm run dev
 
-### 6. Run the frontend
+ 6. Run the frontend
 
 Open `frontend/index.html` using Live Server.
 
-## Features
+ Features
 - Responsive design for mobile and desktop
 - summary cards
+- Chart showing expenses by category
+- dark mode and light mode
 - Form to add a new expense
 - Filter expenses by category
 - Display expenses in a table
@@ -105,31 +111,37 @@ Open `frontend/index.html` using Live Server.
 
 ## Challenges & Solutions
 
-### Challenge 1: 
+ Challenge 1: 
   table was not displaying correctly on mobile screens.
 
-### Solution
+ Solution
 
 I used a responsive table container with horizontal scrolling and tested the layout using browser DevTools.
---------------------------------------------------------
-### Challenge 2: Chart.js
+
+ Challenge 2: Chart.js
 
 The chart was not working because of an error when using Object.keys and Object.values.
 
-### Solution
+ Solution
 
 I fixed the JavaScript error and updated the chart correctly using Chart.js.
--------------------------------------------------
-### Challenge 3: Dark Mode
+
+ Challenge 3: Dark Mode
 
 Some elements were not clear when switching to Dark Mode.
 
-### Solution
+Solution
 
 I added specific CSS styles for the Dark Mode to make the text, buttons, table, and other elements clear.
----------------------------------------------------
-### Challenge 4: Bootstrap
+
+Challenge 4: Bootstrap
 I had some difficulty using Bootstrap classes and components.
 
-### Solution
+ Solution
 I learned how to use Bootstrap classes for the navbar, forms, modal, and responsive design.
+
+Challenge 5: Cache
+The API returned a 304 status, and the frontend treated it as an error.
+
+Solution
+I used cache: "no-store" in the fetch request to get the current data from the API.
