@@ -16,6 +16,12 @@ body{
     background-color: #ffffff;
 
 }
+.navbar-brand {
+    font-size: 22px;
+    font-weight: 600;
+    color: #f59e0b;
+
+}
 
 .dark-mode .navbar {
     background-color: #212529;
@@ -31,11 +37,18 @@ body{
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s ease;
+}
+
+.summary-grid .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
 }
 
 .chart-card {
     max-width: 800px;
     margin: 0 auto;
+    
 }
 main section {
     margin-bottom: 25px;
@@ -151,7 +164,7 @@ main section {
     padding: 12px 15px;
 }
 .expense-table tbody tr:hover td {
-    background-color: #fff8ed;
+    background-color: #f6f2ed;
 }
 
 
@@ -166,7 +179,7 @@ main section {
 
 .table-header th{
     background-color: #f59e0b;
-    color: #f9f1eb;
+    color: #fffffe;
     font-weight: 600;
 }
 
