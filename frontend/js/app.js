@@ -50,7 +50,26 @@ function updateChart(expenses){
             labels: labels,
             datasets:[{
                 label: "Expenses",
-                data: values
+                data: values,
+                backgroundColor: labels.map(function(category){
+                    if(category === "Food") {
+  
+                     return "#198754"; 
+
+                    }
+                    if(category === "Transport") {
+                        return "#0d6efd";
+                }
+                if(category === "Bills") {
+                    return "#6f42c1";
+                }
+
+                if(category === "Entertainment") {
+                    return "#fd7e14";
+                }
+                return "#6c757d"; // default color for other categories
+
+            })
             }]
         },
         options:{
