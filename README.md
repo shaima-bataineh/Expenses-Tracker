@@ -145,3 +145,6 @@ The API returned a 304 status, and the frontend treated it as an error.
 
 Solution
 I used cache: "no-store" in the fetch request to get the current data from the API.
+
+## DEMO
+[Show project ui demo] (https://drive.google.com/file/d/1m0M5lFBpXTwnW150TDmqeF-1WbZIL_rI/view?usp=drive_link)
