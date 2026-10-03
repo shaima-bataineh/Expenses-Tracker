@@ -4,6 +4,7 @@ const titleInput = document.getElementById("title");
 const amountInput = document.getElementById("amount");
 const categoryInput = document.getElementById("category");
 const dateInput = document.getElementById("date");
+
 // darkmodebutton
 const darkModeBtn = document.getElementById("darkModeBtn");
 darkModeBtn.addEventListener("click", function(){
@@ -92,13 +93,12 @@ expenseForm.addEventListener("submit", async function (event) {
         showAlert("Amount should be a number greater than 0 ", "danger");
         return;
     }
-    // check category
     if (category === "") {
         showAlert("Category is required","danger");
         return;
     }
     if (date === "") {
-        showAlert("Date is equired","danger");
+        showAlert("Date is required","danger");
         return;
     }
 
@@ -291,7 +291,7 @@ expenseTableBody.innerHTML = "";
         // edit button
         const editButton = document.createElement("button");
         editButton.textContent = "Edit";
-        editButton.classList.add("btn", "btn-primary","me-2");
+        editButton.classList.add("btn", "edit-btn","me-2");
 
         //function editexpens
         editButton.addEventListener("click", function(){
@@ -310,7 +310,7 @@ expenseTableBody.innerHTML = "";
         // remove button
         const removeButton = document.createElement("button");
         removeButton.textContent = "Remove";
-        removeButton.classList.add("btn", "btn-danger");
+        removeButton.classList.add("btn", "remove-btn");
 
         removeButton.addEventListener("click",async function() {
             try{
@@ -350,7 +350,9 @@ async function loadExpenses() {
  try{
     loadingSpinner.classList.remove("d-none");
 
-    const response = await fetch("http://localhost:3000/api/expenses");
+    const response = await fetch("http://localhost:3000/api/expenses",{
+        cache: "no-store" // prevent cache data
+    });
 
     if(!response.ok){
         const errorData = await response.json();
@@ -358,9 +360,10 @@ async function loadExpenses() {
         return;
     }
 
+    const data = await response.json();
     allExpenses = data;
     updateSummary(data);
-    
+    updateChart(data);
     // know choose not give all data
     const selectedCategory = categoryFilter.value;
     if(selectedCategory === "All"){
