@@ -1,71 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expenses</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container navbar-container">
-        <a class="navbar-brand" href="#">Expense Tracker</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
+            <div class="container navbar-container">
+                <a class="navbar-brand" href="#">Expense Tracker</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="#expenseForm">Add Expense</a>
-        </li>
-        
-    </ul>
-        <button id="darkModeBtn" class="btn btn-outline-secondary darkmode-btn">
-       Dark Mode
-      </button>  
-      </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#expenseForm">Add Expense</a>
+                        </li>
+
+                    </ul>
+                    <button id="darkModeBtn" class="btn btn-outline-secondary darkmode-btn">
+                        Dark Mode
+                    </button>
+                </div>
         </nav>
         <div id="alertContainer"></div>
     </header>
-  
+
     <main>
         <section>
             <div class="container expenses-container">
                 <div class=" summary-grid">
 
                     <!--1 card-->
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Total Amount</h5>
-                                <p class="card-text" id="totalAmount">0</p>
-                            </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Amount</h5>
+                            <p class="card-text" id="totalAmount">0</p>
                         </div>
-                       
+                    </div>
+
                     <!-- 2 card-->
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Number of Expenses</h5>
-                                <p class="card-text" id="expenseCount">0</p>
-                            </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Number of Expenses</h5>
+                            <p class="card-text" id="expenseCount">0</p>
                         </div>
-            
+                    </div>
+
                     <!-- 3 card-->
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Highest Expense</h5>
-                                <p class="card-text" id="highestExpense">0</p>
-                            </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Highest Expense</h5>
+                            <p class="card-text" id="highestExpense">0</p>
                         </div>
-                        
+                    </div>
+
                 </div>
-                </div>
+            </div>
             </div>
         </section>
         <section>
@@ -81,128 +85,19 @@
         <section>
             <div class="container expenses-container">
                 <h3 class="section-title">Add New Expense</h3>
-                <form id="expenseForm" class="expense-form" novalidate >
-                 <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" required>
-                 </div>
-                 <div class="mb-3">
-                    <label for="amount" class="form-label">Amount</label>
-                    <input type="number" class="form-control" id="amount" min="0.01" step="0.01">
-                 </div>
-
-                 <div class="mb-3">
-                    <label for="category" class="form-label">Category</label>
-                    <select class="form-select" id="category">
-                        <option value="Food">Food</option>
-                        <option value="Transport">Transport</option>
-                        <option value="Bills">Bills</option>
-                        <option value="Entertainment">Entertainment</option>
-                        <option value="Other">Other</option>
-                    </select>
-                 </div>
-                <div class="mb-3">
-                    <label for="date" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="date">
-                </div>
-                <button type="submit" class="btn btn-primary expense-add-btn">
-                    Add Expense
-                </button>
-                </form>
-            </div>
-        </section>
-
-        <section>
-            <div class="container mt-3 expenses-container">
-                <div class="mb-3">
-                    <label for="categoryFilter" class="form-label">
-                        Filter by Category
-                    </label>
-                
-                    <select id="categoryFilter" class="form-select">
-                        <option value="All">All</option>
-                        <option value="Food">Food</option>
-                        <option value="Transport">Transport</option>
-                        <option value="Bills">Bills</option>
-                        <option value="Entertainment">Entertainment</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                <div id="loadingSpinner" class="text-center d-none">
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
-
-               <div class="table-responsive table-container">
-                <table class="table expense-table">
-                    <thead>
-                        <tr class="table-header">
-                            <th>Title</th>
-                            <th>Amount</th>
-                            <th>Category</th>
-                            <th>Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="expenseTableBody">
-
-                    </tbody>
-                    
-                </table>
-               </div>
-            </div>
-        </section>
-        <div class="modal fade" id="editExpenseModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Expense</h5>
-
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close">
-                </button>
-            </div>
-
-            <div class="modal-body">
-
-                <form id="editExpenseForm">
-
+                <form id="expenseForm" class="expense-form" novalidate>
                     <div class="mb-3">
-                        <label for="editTitle" class="form-label">
-                            Title
-                        </label>
-
-                        <input type="text"
-                               class="form-control"
-                               id="editTitle"
-                               required>
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Amount</label>
+                        <input type="number" class="form-control" id="amount" min="0.01" step="0.01">
                     </div>
 
                     <div class="mb-3">
-                        <label for="editAmount" class="form-label">
-                            Amount
-                        </label>
-
-                        <input type="number"
-                               class="form-control"
-                               id="editAmount"
-                               min="0.01"
-                               step="0.01"
-                               required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="editCategory" class="form-label">
-                            Category
-                        </label>
-
-                        <select class="form-select"
-                                id="editCategory"
-                                required>
+                        <label for="category" class="form-label">Category</label>
+                        <select class="form-select" id="category">
                             <option value="Food">Food</option>
                             <option value="Transport">Transport</option>
                             <option value="Bills">Bills</option>
@@ -210,31 +105,130 @@
                             <option value="Other">Other</option>
                         </select>
                     </div>
-
                     <div class="mb-3">
-                        <label for="editDate" class="form-label">
-                            Date
+                        <label for="date" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="date">
+                    </div>
+                    <button type="submit" class="btn btn-primary expense-add-btn">
+                        Add Expense
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section>
+            <div class="container mt-3 expenses-container">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3 class="section-title mb-0">Expenses</h3>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="categoryFilter" class="form-label mb-0">
+                            Filter 
                         </label>
 
-                        <input type="date"
-                               class="form-control"
-                               id="editDate"
-                               required>
+                        <select id="categoryFilter" class="form-select category-filter">
+                            <option value="All">All</option>
+                            <option value="Food">Food</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Bills">Bills</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="loadingSpinner" class="text-center d-none">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+
+                <div class="table-responsive table-container">
+                    <table class="table expense-table">
+                        <thead>
+                            <tr class="table-header">
+                                <th>Title</th>
+                                <th>Amount</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expenseTableBody">
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </section>
+        <div class="modal fade" id="editExpenseModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Expense</h5>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
-                        Save Changes
-                    </button>
+                    <div class="modal-body">
 
-                </form>
+                        <form id="editExpenseForm">
 
+                            <div class="mb-3">
+                                <label for="editTitle" class="form-label">
+                                    Title
+                                </label>
+
+                                <input type="text" class="form-control" id="editTitle" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="editAmount" class="form-label">
+                                    Amount
+                                </label>
+
+                                <input type="number" class="form-control" id="editAmount" min="0.01" step="0.01"
+                                    required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="editCategory" class="form-label">
+                                    Category
+                                </label>
+
+                                <select class="form-select" id="editCategory" required>
+                                    <option value="Food">Food</option>
+                                    <option value="Transport">Transport</option>
+                                    <option value="Bills">Bills</option>
+                                    <option value="Entertainment">Entertainment</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="editDate" class="form-label">
+                                    Date
+                                </label>
+
+                                <input type="date" class="form-control" id="editDate" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                Save Changes
+                            </button>
+
+                        </form>
+
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/app.js"></script>
 </body>
+
 </html>
